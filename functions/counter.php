@@ -21,3 +21,30 @@ function numberOfViews(): string {
 
     return file_get_contents($file);
 }
+
+function numberOfViewsPerMonth(int $year, int $month): int {
+    $month = str_pad($month, 2, '0', STR_PAD_LEFT);
+    $filePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'counter' . $year . '-' . $month . '-*';
+    $total = 0;
+    $files = glob($filePath);
+    foreach($files as $file) {
+        $content = file_get_contents($file);
+        $total += (int)$content;
+    }
+    return $total;
+}
+
+function numberOfViewsPerMonthDetails(int $year, int $month): array {
+    $month = str_pad($month, 2, '0', STR_PAD_LEFT);
+    $filePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'counter' . $year . '-' . $month . '-*';
+    $files = glob($filePath);
+    $results = [];
+    foreach($files as $file) {
+        $day = substr(basename($file), -2);
+        $results[] = [
+           'day' => $day,
+           'visites' => file_get_contents($file),
+        ];
+    }
+    return $results;
+}
