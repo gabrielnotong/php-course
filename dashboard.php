@@ -1,6 +1,8 @@
 <?php
-require 'functions/counter.php';
-require 'data/config.php';
+require_once 'functions/auth.php';
+deniedAccessIfNotGranted();
+require_once 'functions/counter.php';
+require_once 'data/config.php';
 $year = (int)date('Y');
 $yearSelected = (int)$_GET['year'] ?? $year;
 $months = [
@@ -26,7 +28,7 @@ if ($yearSelected && $monthSelected) {
     $total = numberOfViews();
 }
 
-require 'elements/header.php';
+require_once 'elements/header.php';
 
 ?>
 
@@ -72,7 +74,7 @@ require 'elements/header.php';
                 <tbody>
                     <?php foreach ($detailedVisites as $detail): ?>
                     <tr>
-                        <td><?= DAYS[(int)$detail['day']] ?></td>
+                        <td><?= $detail['day'] ?></td>
                         <td><?= $detail['visites'] ?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -82,4 +84,4 @@ require 'elements/header.php';
     </div>
 </div>
 
-<?php require 'elements/footer.php'; ?>
+<?php require_once 'elements/footer.php'; ?>
