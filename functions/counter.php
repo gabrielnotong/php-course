@@ -40,9 +40,9 @@ function numberOfViewsPerMonthDetails(int $year, int $month): array {
     $files = glob($filePath);
     $results = [];
     foreach($files as $file) {
-        $day = substr(basename($file), -2);
+        $array = explode('-', basename($file));
         $results[] = [
-           'day' => $day,
+           'day' => $array[2] . '/' . $array[1],
            'visites' => file_get_contents($file),
         ];
     }
