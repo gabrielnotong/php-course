@@ -15,7 +15,8 @@ function deniedAccessIfNotGranted(): void {
 }
 
 function loggedIn(string $username, string $password): bool {
-    if ($username === 'john' && $password === 'password') {
+    $hashedPassword = '$2y$13$nfTzxw2SE34dUup/ftFE8uM21WZUh0Q55CCgJgCPDHm75FZQMKQfK';
+    if ($username === 'john' && password_verify($password, $hashedPassword)) {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
