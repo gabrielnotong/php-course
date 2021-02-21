@@ -3,9 +3,11 @@
     <div class="row">
         <div class="col-4">
             <?php
-            require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'counter.php';
-            addView();
-            $views = numberOfViews();
+            require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'class' . DIRECTORY_SEPARATOR . 'Counter.php';
+            $file = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 'counter';
+            $counter = new Counter($file);
+            $counter->increment();
+            $views = $counter->getAllViews();
             ?>
             Number of view<?php if($views > 1): ?>s<?php endif?>: <?= $views ?>
         </div>
