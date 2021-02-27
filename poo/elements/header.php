@@ -23,8 +23,11 @@
             <ul class="navbar-nav mr-auto">
                 <li class="list-unstyled nav-item">
                     <a class="nav-link" href="/index.php">Home</a>
-                </li>            </ul>
-            <ul class="navbar-nav">
+                </li>  
+                <li class="list-unstyled nav-item">
+                    <a class="nav-link" href="/messages.php">Messages</a>
+                </li>            
             </ul>
+            <ul class="navbar-nav"></ul>
         </div>
     </nav>
